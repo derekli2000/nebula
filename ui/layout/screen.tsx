@@ -6,14 +6,16 @@ interface ScreenProps {
   safeAreaDisabled?: boolean;
 }
 
-export const Screen: FC<ScreenProps> = ({children, safeAreaDisabled}) => {
+export const Screen: FC<ScreenProps> = ({children}) => {
   const {theme} = useTheme();
-  if (safeAreaDisabled) {
-    return <>{children} </>;
-  }
+  console.log(JSON.stringify(theme, null, 4));
 
   return (
-    <SafeAreaView style={{backgroundColor: theme.colors?.background}}>
+    <SafeAreaView
+      style={{
+        backgroundColor: theme.colors?.background,
+        flex: 1,
+      }}>
       {children}
     </SafeAreaView>
   );
