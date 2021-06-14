@@ -1,21 +1,28 @@
 import React, {FC} from 'react';
-import {useTheme} from 'react-native-elements';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {Box} from '../theme';
 
 interface ScreenProps {
-  safeAreaDisabled?: boolean;
+  disableSafeArea?: boolean;
+  disablePadding?: boolean;
+  disableSafeArea?: boolean;
 }
 
-export const Screen: FC<ScreenProps> = ({children}) => {
-  const {theme} = useTheme();
+export const Screen: FC<ScreenProps> = ({
+  children,
+  disablePadding,
+  disableSafeArea,
+}) => {
+  const padding = disablePadding ? 'none' : 'screenInset';
+  const insets = useSafeAreaInsets();
 
   return (
-    <SafeAreaView
-      style={{
-        backgroundColor: theme.colors?.background,
-        flex: 1,
-      }}>
+    <Box
+      backgroundColor="background"
+      flex={1}
+      padding={padding}
+      style={{marginTop: disableSafeArea ? 'none' : insets.top}}>
       {children}
-    </SafeAreaView>
+    </Box>
   );
 };

@@ -1,18 +1,19 @@
-import React, {useMemo} from 'react';
-import {useColorScheme} from 'react-native';
-import {ThemeProvider} from 'react-native-elements';
+import {ThemeProvider} from '@shopify/restyle';
+import React from 'react';
+import {StatusBar} from 'react-native';
+import {ThemeProvider as ElementsProvider} from 'react-native-elements';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Navigation} from './components/navigation';
-import {createNebulaTheme} from './ui/theme';
+import {theme} from './ui/theme';
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-  const theme = useMemo(() => createNebulaTheme(isDarkMode), [isDarkMode]);
-
   return (
     <SafeAreaProvider>
-      <ThemeProvider theme={theme} useDark={isDarkMode}>
-        <Navigation />
+      <ThemeProvider theme={theme}>
+        <StatusBar barStyle="dark-content" />
+        <ElementsProvider useDark={true}>
+          <Navigation />
+        </ElementsProvider>
       </ThemeProvider>
     </SafeAreaProvider>
   );
