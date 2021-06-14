@@ -13,6 +13,8 @@ target 'nebula' do
   )
 
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'nebulaTests' do
     inherit! :complete
     # Pods for testing
