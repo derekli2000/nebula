@@ -1,22 +1,25 @@
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
-import {enableScreens} from 'react-native-screens';
-import {createNativeStackNavigator} from 'react-native-screens/native-stack';
+import {Icon} from 'react-native-elements';
 import {Home} from '../../screens/home';
 
-enableScreens();
-const Stack = createNativeStackNavigator();
+const Tab = createMaterialBottomTabNavigator();
 
 export const Navigation = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
+      <Tab.Navigator>
+        <Tab.Screen
           name="Home"
           component={Home}
-          options={{headerShown: false}}
+          options={{
+            tabBarIcon: ({color}) => <Icon name="home" color={color} />,
+          }}
         />
-      </Stack.Navigator>
+        <Tab.Screen name="Search" component={Home} />
+        <Tab.Screen name="Settings" component={Home} />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 };

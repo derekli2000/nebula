@@ -8,7 +8,6 @@ interface ScreenProps {
 
 export const Screen: FC<ScreenProps> = ({children}) => {
   const {theme} = useTheme();
-  console.log(JSON.stringify(theme, null, 4));
 
   return (
     <SafeAreaView
