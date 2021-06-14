@@ -14,6 +14,18 @@ const DATA = [
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d72",
     title: "Third Item",
+  },
+  {
+    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28bv",
+    title: "First Item",
+  },
+  {
+    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f6v",
+    title: "Second Item",
+  },
+  {
+    id: "58694a0f-3da1-471f-bd96-145571e29dv",
+    title: "Third Item",
   }
 ];
 
@@ -25,16 +37,15 @@ export const NonFeaturedCarousel = () => {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      flexDirection: 'row',
       marginTop: StatusBar.currentHeight || 0,
     },
     item: {
       padding: 20,
-      marginVertical: 8,
-      marginHorizontal: 16,
+      margin: 10,
+      borderRadius: 8
     },
     title: {
-      fontSize: 32,
+      fontSize: 16,
     },
   });
 
@@ -62,6 +73,7 @@ export const NonFeaturedCarousel = () => {
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
+        horizontal={true}
         data={DATA}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}

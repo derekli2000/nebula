@@ -7,6 +7,7 @@ export const Home = () => {
   return (
     <Screen>
       <NonFeaturedCarousel />
+      <NonFeaturedCarousel />
     </Screen>
   );
 };
