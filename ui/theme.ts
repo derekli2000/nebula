@@ -1,4 +1,4 @@
-import {createBox, createText, createTheme, useTheme} from '@shopify/restyle';
+import {createBox, createTheme, useTheme} from '@shopify/restyle';
 import {
   black,
   deepOrange400,
@@ -31,30 +31,43 @@ const palette = {
   white: white,
 };
 
-export const theme = createTheme({
-  colors: {
-    ...palette,
-    background: palette.black,
-    backgroundSecondary: palette.grey800,
-  },
-  spacing: {
-    none: 0,
-    p4: 4,
-    p8: 8,
-    p12: 12,
-    p16: 16,
-    screenInset: 12,
-  },
-  breakpoints: {},
-  borderRadii: {
-    p8: 8,
-    p16: 16,
-  },
-  fonts: {},
-});
+type Mode = 'light' | 'dark';
 
-type Theme = typeof theme;
+const createDemux =
+  (mode: Mode) =>
+  <T>(options: {[key in Mode]: T}) => {
+    return options[mode];
+  };
+
+const createNebulaTheme = (mode: 'light' | 'dark') => {
+  const dm = createDemux(mode);
+
+  return createTheme({
+    colors: {
+      ...palette,
+      background: dm({light: palette.white, dark: palette.black}),
+      backgroundSecondary: dm({light: palette.grey100, dark: palette.grey800}),
+    },
+    spacing: {
+      none: 0,
+      p4: 4,
+      p8: 8,
+      p12: 12,
+      p16: 16,
+      screenInset: 24,
+    },
+    breakpoints: {},
+    borderRadii: {
+      p8: 8,
+      p16: 16,
+    },
+    fonts: {},
+  });
+};
+
+export const DarkTheme = createNebulaTheme('dark');
+export const LightTheme = createNebulaTheme('light');
+
+type Theme = typeof DarkTheme;
 export const useNebulaTheme = () => useTheme<Theme>();
-
 export const Box = createBox<Theme>();
-export const Text = createText<Theme>();

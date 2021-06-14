@@ -1,20 +1,17 @@
-import {ThemeProvider} from '@shopify/restyle';
 import React from 'react';
-import {StatusBar} from 'react-native';
-import {ThemeProvider as ElementsProvider} from 'react-native-elements';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {RecoilRoot} from 'recoil';
 import {Navigation} from './components/navigation';
-import {theme} from './ui/theme';
+import {StyleProviders} from './components/style-providers';
 
 const App = () => {
   return (
     <SafeAreaProvider>
-      <ThemeProvider theme={theme}>
-        <StatusBar barStyle="dark-content" />
-        <ElementsProvider useDark={true}>
+      <RecoilRoot>
+        <StyleProviders>
           <Navigation />
-        </ElementsProvider>
-      </ThemeProvider>
+        </StyleProviders>
+      </RecoilRoot>
     </SafeAreaProvider>
   );
 };

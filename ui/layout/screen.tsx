@@ -1,11 +1,10 @@
 import React, {FC} from 'react';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {Box} from '../theme';
+import {Box, useNebulaTheme} from '../theme';
 
 interface ScreenProps {
   disableSafeArea?: boolean;
   disablePadding?: boolean;
-  disableSafeArea?: boolean;
 }
 
 export const Screen: FC<ScreenProps> = ({
@@ -13,15 +12,17 @@ export const Screen: FC<ScreenProps> = ({
   disablePadding,
   disableSafeArea,
 }) => {
-  const padding = disablePadding ? 'none' : 'screenInset';
+  const theme = useNebulaTheme();
   const insets = useSafeAreaInsets();
 
   return (
     <Box
       backgroundColor="background"
       flex={1}
-      padding={padding}
-      style={{marginTop: disableSafeArea ? 'none' : insets.top}}>
+      style={{
+        padding: disablePadding ? 0 : theme.spacing.screenInset,
+        paddingTop: disableSafeArea ? 0 : insets.top,
+      }}>
       {children}
     </Box>
   );
