@@ -5,6 +5,8 @@ import {FeaturedCarousel} from '../components/featured-carousel';
 import {isDarkModeAtom} from '../state/isDarkMode';
 import DarkModeSwitch from '../ui/inputs/dark-mode-switch/dark-mode-switch';
 import {Screen} from '../ui/layout/screen';
+import {NonFeaturedCarousel} from '../ui/layout/non-featured-carousel';
+import { Text } from 'react-native-elements';
 import {Box} from '../ui/theme';
 
 export const Home = () => {
@@ -22,6 +24,7 @@ export const Home = () => {
         <DarkModeSwitch value={darkMode} onChange={val => setDarkMode(val)} />
       </Box>
       <FeaturedCarousel />
+      <NonFeaturedCarousel title="Recommended"/>
     </Screen>
   );
 };
