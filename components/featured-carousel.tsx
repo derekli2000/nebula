@@ -1,54 +1,91 @@
+import {BlurView} from '@react-native-community/blur';
 import React, {useRef} from 'react';
 import {Platform, StyleSheet, useWindowDimensions} from 'react-native';
+import {Icon, Text} from 'react-native-elements';
 import SnapCarousel, {ParallaxImage} from 'react-native-snap-carousel';
-import {Box, Spacing} from '../ui/theme';
+import {Box} from '../ui/theme';
+
+interface CarouselItem {
+  url: string;
+  title: string;
+}
 
 interface FeaturedCarouselProps {
   aspectRatio?: number;
+  title: string;
+  data: CarouselItem[];
 }
 
 export const FeaturedCarousel = ({
-  aspectRatio = 1.15,
+  aspectRatio = 1.4,
+  title,
+  data,
 }: FeaturedCarouselProps) => {
   const {width} = useWindowDimensions();
-
   const carousel = useRef(null);
-  const data = [
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png',
-    'https://images.unsplash.com/photo-1623039142047-3567eb7a208d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1900&q=80',
-    'https://images.unsplash.com/photo-1623211514326-a47c460ea21d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1838&q=80',
-  ];
 
-  const tileWidth = width - 2 * (Spacing.screenInset + Spacing.p12);
+  const tileWidth = width - 60;
   const tileHeight = tileWidth * aspectRatio;
+  const borderRadius = 0.08 * tileWidth;
+
+  const _renderItem = (
+    {item}: {item: CarouselItem; index: number},
+    parallaxProps: any,
+  ) => (
+    // parallaxProps: any,
+    <Box flex={1} position="relative" overflow="hidden" style={{borderRadius}}>
+      <ParallaxImage
+        source={{
+          uri: item.url,
+        }}
+        containerStyle={{
+          flex: 1,
+          marginBottom: Platform.select({ios: 0, android: 1}), // Prevent a random Android rendering issue
+        }}
+        style={{...StyleSheet.absoluteFillObject, resizeMode: 'cover'}}
+        parallaxFactor={0.5}
+        {...parallaxProps}
+      />
+      <BlurView
+        blurType="dark"
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          paddingHorizontal: borderRadius / 2,
+          paddingVertical: 8,
+          // height: 60,
+        }}>
+        <Text h4 numberOfLines={1} style={{textTransform: 'uppercase'}}>
+          {item.title}
+        </Text>
+        <Box
+          borderRadius="p8"
+          alignSelf="flex-start"
+          paddingVertical="p4"
+          flexDirection="row">
+          <Icon name="star" />
+          <Text style={{fontSize: 20, marginLeft: 4}}>10.0</Text>
+        </Box>
+      </BlurView>
+    </Box>
+  );
 
   return (
     <Box borderRadius="p16" height={tileHeight}>
+      <Box paddingHorizontal="screenInset" paddingBottom="p8">
+        <Text h3>{title}</Text>
+      </Box>
       <SnapCarousel
         ref={carousel}
         data={data}
         // @ts-ignore
-        renderItem={({item}, parallaxProps) => (
-          <Box height={tileHeight} width={tileWidth}>
-            <ParallaxImage
-              source={{
-                uri: item,
-              }}
-              containerStyle={{
-                flex: 1,
-                marginBottom: Platform.select({ios: 0, android: 1}), // Prevent a random Android rendering issue
-                backgroundColor: 'white',
-                borderRadius: 8,
-              }}
-              style={{...StyleSheet.absoluteFillObject, resizeMode: 'cover'}}
-              parallaxFactor={0.4}
-              {...parallaxProps}
-            />
-          </Box>
-        )}
+        renderItem={_renderItem}
         sliderWidth={width}
         itemWidth={tileWidth}
         hasParallaxImages
+        decelerationRate="fast"
       />
     </Box>
   );
