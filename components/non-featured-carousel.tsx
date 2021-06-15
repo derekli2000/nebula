@@ -27,7 +27,7 @@ export const NonFeaturedCarousel = ({title}: NonFeaturedCarouselProps) => {
   return (
     <Box>
       <Box paddingHorizontal="screenInset" paddingBottom="p8">
-        <Text h3>{title}</Text>
+        <Text h4 style={{fontWeight:"bold"}}>{title}</Text>
       </Box>
       <FlatList
         horizontal

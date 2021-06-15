@@ -68,7 +68,7 @@ export const Home = () => {
         <Text h2>nebula</Text>
       </Box>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <FeaturedCarousel title="Top airing" data={data} />
+        <FeaturedCarousel data={data} />
         <Seperator />
         <NonFeaturedCarousel title="Recommended" />
         <Seperator />

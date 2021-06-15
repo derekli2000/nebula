@@ -4,6 +4,8 @@ import {Platform, StyleSheet, useWindowDimensions} from 'react-native';
 import {Icon, Text} from 'react-native-elements';
 import SnapCarousel, {ParallaxImage} from 'react-native-snap-carousel';
 import {Box} from '../ui/theme';
+import LinearGradient from 'react-native-linear-gradient';
+import { ThemeProvider } from '@react-navigation/native';
 
 interface CarouselItem {
   url: string;
@@ -12,13 +14,13 @@ interface CarouselItem {
 
 interface FeaturedCarouselProps {
   aspectRatio?: number;
-  title: string;
+  // title: string;
   data: CarouselItem[];
 }
 
 export const FeaturedCarousel = ({
   aspectRatio = 1.4,
-  title,
+  // title,
   data,
 }: FeaturedCarouselProps) => {
   const {width} = useWindowDimensions();
@@ -46,18 +48,16 @@ export const FeaturedCarousel = ({
         parallaxFactor={0.5}
         {...parallaxProps}
       />
-      <BlurView
-        blurType="dark"
-        style={{
+      <LinearGradient colors={['#00000000', '#000000']} style={{
+          flex: 1,
           position: 'absolute',
           bottom: 0,
           left: 0,
           right: 0,
           paddingHorizontal: borderRadius / 2,
-          paddingVertical: 8,
-          // height: 60,
+          paddingVertical: 10,
         }}>
-        <Text h4 numberOfLines={1} style={{textTransform: 'uppercase'}}>
+        <Text h4 numberOfLines={1} style={{textTransform: 'uppercase', fontWeight:"bold", color:"white" }}>
           {item.title}
         </Text>
         <Box
@@ -66,17 +66,17 @@ export const FeaturedCarousel = ({
           paddingVertical="p4"
           flexDirection="row">
           <Icon name="star" />
-          <Text style={{fontSize: 20, marginLeft: 4}}>10.0</Text>
+          <Text style={{fontSize: 20, marginLeft: 4, color: "white" }}>10.0</Text>
         </Box>
-      </BlurView>
+      </LinearGradient>
     </Box>
   );
 
   return (
     <Box borderRadius="p16" height={tileHeight}>
-      <Box paddingHorizontal="screenInset" paddingBottom="p8">
+      {/* <Box paddingHorizontal="screenInset" paddingBottom="p8">
         <Text h3>{title}</Text>
-      </Box>
+      </Box> */}
       <SnapCarousel
         ref={carousel}
         data={data}
