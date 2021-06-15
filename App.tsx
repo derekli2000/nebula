@@ -1,19 +1,17 @@
-import React, {useMemo} from 'react';
-import {useColorScheme} from 'react-native';
-import {ThemeProvider} from 'react-native-elements';
+import React from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {RecoilRoot} from 'recoil';
 import {Navigation} from './components/navigation';
-import {createNebulaTheme} from './ui/theme';
+import {StyleProviders} from './components/style-providers';
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-  const theme = useMemo(() => createNebulaTheme(isDarkMode), [isDarkMode]);
-
   return (
     <SafeAreaProvider>
-      <ThemeProvider theme={theme} useDark={isDarkMode}>
-        <Navigation />
-      </ThemeProvider>
+      <RecoilRoot>
+        <StyleProviders>
+          <Navigation />
+        </StyleProviders>
+      </RecoilRoot>
     </SafeAreaProvider>
   );
 };
