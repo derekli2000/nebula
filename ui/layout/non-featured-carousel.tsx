@@ -29,7 +29,7 @@ const DATA = [
   }
 ];
 
-export const NonFeaturedCarousel = () => {
+export const NonFeaturedCarousel = ({title}) => {
   const {theme} = useTheme();
 
   const [selectedId , setSelectedId] = useState(null)
@@ -40,11 +40,11 @@ export const NonFeaturedCarousel = () => {
       // marginTop: StatusBar.currentHeight || 0,
     },
     item: {
-      padding: 20,
+      // padding: 20,
       margin: 10,
       borderRadius: 8,
       width: 87.1,
-      height: 154
+      height: 134.16
     },
     title: {
       fontSize: 16,
@@ -55,7 +55,7 @@ export const NonFeaturedCarousel = () => {
 
   const renderItem = ({ item }) => {
     const backgroundColor = item.id === selectedId ? "#6e3b6e" : "#f9c2ff";
-    const color = "white"
+    const color = theme.colors?.grey0
 
     return (
       <CarouselCard
@@ -78,6 +78,7 @@ export const NonFeaturedCarousel = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <Text h3 style={{margin:10}}>{title}</Text>
       <FlatList
         horizontal={true}
         data={DATA}

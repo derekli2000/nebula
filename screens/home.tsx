@@ -7,8 +7,8 @@ import { Text } from 'react-native-elements';
 export const Home = () => {
   return (
     <Screen>
-      <Text h3 style={{margin:10}}>Currently Airing</Text>
-      <NonFeaturedCarousel />
+      <NonFeaturedCarousel title="Recommended"/>
+      
     </Screen>
   );
 };
