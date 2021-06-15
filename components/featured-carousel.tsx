@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import {Platform, StyleSheet, useWindowDimensions} from 'react-native';
 import SnapCarousel, {ParallaxImage} from 'react-native-snap-carousel';
-import {Box} from '../ui/theme';
+import {Box, Spacing} from '../ui/theme';
 
 interface FeaturedCarouselProps {
   aspectRatio?: number;
@@ -19,7 +19,7 @@ export const FeaturedCarousel = ({
     'https://images.unsplash.com/photo-1623211514326-a47c460ea21d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1838&q=80',
   ];
 
-  const tileWidth = width - 48;
+  const tileWidth = width - 2 * (Spacing.screenInset + Spacing.p12);
   const tileHeight = tileWidth * aspectRatio;
 
   return (

@@ -54,20 +54,21 @@ const createNebulaTheme = (mode: 'light' | 'dark') => {
       p8: 8,
       p12: 12,
       p16: 16,
-      screenInset: 24,
+      p20: 20,
+      p24: 24,
+      screenInset: 12,
     },
     breakpoints: {},
     borderRadii: {
       p8: 8,
       p16: 16,
     },
-    fonts: {},
   });
 };
 
 export const DarkTheme = createNebulaTheme('dark');
 export const LightTheme = createNebulaTheme('light');
-
+export const Spacing = DarkTheme.spacing;
 type Theme = typeof DarkTheme;
 export const useNebulaTheme = () => useTheme<Theme>();
 export const Box = createBox<Theme>();
