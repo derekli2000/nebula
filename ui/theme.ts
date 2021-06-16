@@ -3,7 +3,7 @@ import {
   black,
   deepOrange400,
   green400,
-  green800,
+  grey800,
   grey100,
   grey300,
   grey500,
@@ -26,7 +26,7 @@ const palette = {
   grey100: grey100,
   grey300: grey300,
   grey500: grey500,
-  grey800: green800,
+  grey800: grey800,
   black: black,
   white: white,
 };
