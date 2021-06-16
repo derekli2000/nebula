@@ -15,13 +15,14 @@ export const Screen: FC<ScreenProps> = ({
   const theme = useNebulaTheme();
   const insets = useSafeAreaInsets();
 
+  const padding = disablePadding ? 0 : theme.spacing.screenInset;
   return (
     <Box
       backgroundColor="background"
       flex={1}
       style={{
-        padding: disablePadding ? 0 : theme.spacing.screenInset,
-        paddingTop: disableSafeArea ? 0 : insets.top,
+        padding,
+        paddingTop: disableSafeArea ? padding : padding + insets.top,
       }}>
       {children}
     </Box>

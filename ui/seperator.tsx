@@ -6,7 +6,7 @@ interface SeperatorProps {
   spacing?: keyof typeof Spacing;
 }
 
-export const Seperator = ({vertical, spacing = 'p20'}: SeperatorProps) => {
+export const Seperator = ({vertical, spacing = 'p12'}: SeperatorProps) => {
   let height = 0;
   let width = 0;
 

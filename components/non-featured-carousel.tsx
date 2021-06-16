@@ -1,41 +1,51 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {FlatList, TouchableOpacity} from 'react-native';
-import {Text} from 'react-native-elements';
+import {FlatList, ListRenderItem} from 'react-native';
+import {Image, Text} from 'react-native-elements';
+import {AnimeOverview} from '../types/anime';
 import {Seperator} from '../ui/seperator';
-import {Box, Spacing} from '../ui/theme';
+import {Box} from '../ui/theme';
 
 interface NonFeaturedCarouselProps {
   title: string;
+  data: AnimeOverview[];
 }
 
-export const NonFeaturedCarousel = ({title}: NonFeaturedCarouselProps) => {
-  const renderItem = ({item}: {item: any}) => {
+export const NonFeaturedCarousel = ({
+  title,
+  data,
+}: NonFeaturedCarouselProps) => {
+  const navigation = useNavigation();
+
+  const _renderItem: ListRenderItem<typeof data[number]> = ({item}) => {
     return (
-      <TouchableOpacity>
-        <Box
-          height={134}
-          width={87}
-          backgroundColor="blue"
-          borderRadius="p8"
-          marginBottom="p4"
+      <Box width={87}>
+        <Image
+          source={{uri: item.poster_url}}
+          style={{height: 134, borderRadius: 8}}
+          onPress={() => navigation.navigate('anime-info', item)}
         />
-        <Text>{item.title}</Text>
-      </TouchableOpacity>
+        <Text style={{marginTop: 4}} numberOfLines={2}>
+          {item.english_title}
+        </Text>
+      </Box>
     );
   };
 
   return (
     <Box>
       <Box paddingHorizontal="screenInset" paddingBottom="p8">
-        <Text h4 style={{fontWeight:"bold"}}>{title}</Text>
+        <Text h4 style={{fontWeight: 'bold'}}>
+          {title}
+        </Text>
       </Box>
       <FlatList
         horizontal
-        data={DATA}
-        renderItem={renderItem}
+        data={data}
+        renderItem={_renderItem}
         keyExtractor={item => item.id}
         contentContainerStyle={{
-          paddingHorizontal: Spacing.screenInset + Spacing.p12,
+          paddingHorizontal: 32,
         }}
         ItemSeparatorComponent={() => <Seperator vertical spacing="p20" />}
         showsHorizontalScrollIndicator={false}
@@ -43,30 +53,3 @@ export const NonFeaturedCarousel = ({title}: NonFeaturedCarouselProps) => {
     </Box>
   );
 };
-
-const DATA = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'First Item',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Second Item',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28bv',
-    title: 'Fourth Item',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f6v',
-    title: 'Fifth Item',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29dv',
-    title: 'Sixth Item',
-  },
-];

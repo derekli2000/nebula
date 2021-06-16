@@ -45,7 +45,7 @@ const createNebulaTheme = (mode: 'light' | 'dark') => {
   return createTheme({
     colors: {
       ...palette,
-      background: dm({light: palette.white, dark: palette.black}),
+      background: dm({light: palette.grey100, dark: palette.black}),
       backgroundSecondary: dm({light: palette.grey100, dark: palette.grey800}),
     },
     spacing: {
