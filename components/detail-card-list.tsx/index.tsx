@@ -25,12 +25,12 @@ export const DetailedCardList = ({
     list = (
       <Box paddingLeft="p32" paddingRight="screenInset">
         {data.map((item, index) => (
-          <>
-            <DetailCard key={item.id} {...{navigation, item}} />
-            {index != data.length - 1 && (
+          <Box key={item.id}>
+            <DetailCard {...{navigation, item}} />
+            {index !== data.length - 1 && (
               <Seperator vertical={false} spacing="p20" />
             )}
-          </>
+          </Box>
         ))}
       </Box>
     );

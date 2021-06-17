@@ -4,9 +4,14 @@ import {Box, Spacing} from './theme';
 interface SeperatorProps {
   vertical?: boolean;
   spacing?: keyof typeof Spacing;
+  grow?: boolean;
 }
 
-export const Seperator = ({vertical, spacing = 'p12'}: SeperatorProps) => {
+export const Seperator = ({
+  vertical,
+  grow,
+  spacing = 'p12',
+}: SeperatorProps) => {
   let height = 0;
   let width = 0;
 
@@ -21,8 +26,8 @@ export const Seperator = ({vertical, spacing = 'p12'}: SeperatorProps) => {
       height={height}
       width={width}
       flexBasis={Spacing[spacing]}
-      flexGrow={0}
-      flexShrink={0}
+      flexGrow={grow ? 1 : 0}
+      flexShrink={grow ? 1 : 0}
       alignSelf="stretch"
     />
   );

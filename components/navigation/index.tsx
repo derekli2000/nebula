@@ -6,10 +6,11 @@ import {enableScreens} from 'react-native-screens';
 import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 import {AnimeInfo} from '../../screens/anime-info';
 import {Home} from '../../screens/home';
+import {WithStackParamList} from '../../types/navigation';
 
 enableScreens();
 
-const Stack = createSharedElementStackNavigator();
+const Stack = createSharedElementStackNavigator<WithStackParamList>();
 const Tab = createMaterialBottomTabNavigator();
 
 const withStack = (component: React.ComponentType) => {
@@ -21,13 +22,6 @@ const withStack = (component: React.ComponentType) => {
         component={AnimeInfo}
         options={({route}) => ({
           title: route.params.english_title,
-          cardStyleInterpolator: ({current: {progress}}) => {
-            return {
-              cardStyle: {
-                opacity: progress,
-              },
-            };
-          },
         })}
       />
     </Stack.Navigator>

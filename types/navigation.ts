@@ -1,15 +1,14 @@
-// import {NavigatorScreenParams} from '@react-navigation/native';
-// import {AnimeOverview} from './anime';
+import {AnimeOverview} from './anime';
 
-// export type WithStack<X = undefined> = NavigatorScreenParams<{
-//   index: X;
-//   'anime-info': AnimeOverview;
-// }>;
+export type WithStackParamList<X = undefined> = {
+  index: X;
+  'anime-info': AnimeOverview;
+};
 
-// export interface NavigationParamList {
-//   home: WithStack;
-//   explore: WithStack;
-//   trending: WithStack;
-//   saved: WithStack;
-//   account: WithStack;
-// }
+export interface NavigationParamList {
+  home: WithStackParamList;
+  explore: WithStackParamList;
+  trending: WithStackParamList;
+  saved: WithStackParamList;
+  account: WithStackParamList;
+}

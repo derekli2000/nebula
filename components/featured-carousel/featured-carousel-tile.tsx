@@ -2,6 +2,7 @@ import React from 'react';
 import {TouchableOpacity} from 'react-native';
 import {Icon, Image, Text} from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
+import {SharedElement} from 'react-navigation-shared-element';
 import {AnimeOverview} from '../../types/anime';
 import {Box} from '../../ui/theme';
 
@@ -25,14 +26,16 @@ export const FeaturedCarouselTile = ({
       activeOpacity={0.7}
       onPress={() => navigation.navigate('anime-info', item)}
       style={{overflow: 'hidden', borderRadius, width: imageWidth}}>
-      <Image
-        source={{
-          uri: item.poster_url,
-          height: imageHeight,
-          width: imageWidth,
-        }}
-        style={{resizeMode: 'cover', height: imageHeight, width: imageWidth}}
-      />
+      <SharedElement id={`item.${item.id}.featured`}>
+        <Image
+          source={{
+            uri: item.poster_url,
+            height: imageHeight,
+            width: imageWidth,
+          }}
+          style={{resizeMode: 'cover', height: imageHeight, width: imageWidth}}
+        />
+      </SharedElement>
       <LinearGradient
         colors={['#00000000', '#000000']}
         style={{
