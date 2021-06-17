@@ -1,6 +1,6 @@
 import React from 'react';
 import {ScrollView} from 'react-native';
-import { DetailedCardList } from '../components/detailed-card-list';
+import {DetailedCardList} from '../components/detail-card-list.tsx';
 import {FeaturedCarousel} from '../components/featured-carousel';
 import {NonFeaturedCarousel} from '../components/non-featured-carousel';
 import {OverviewData} from '../data/overviews';
@@ -20,7 +20,7 @@ export const Home = () => {
         <Seperator />
         <NonFeaturedCarousel title="Manga" data={OverviewData} />
         <Seperator />
-        <DetailedCardList title="Manga" data={OverviewData} />
+        <DetailedCardList title="Manga" data={OverviewData} noScrollView />
         <Seperator />
       </ScrollView>
     </Screen>
