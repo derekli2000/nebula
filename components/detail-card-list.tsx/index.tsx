@@ -24,8 +24,13 @@ export const DetailedCardList = ({
   if (noScrollView) {
     list = (
       <Box paddingLeft="p32" paddingRight="screenInset">
-        {data.map(item => (
-          <DetailCard key={item.id} {...{navigation, item}} />
+        {data.map((item, index) => (
+          <>
+            <DetailCard key={item.id} {...{navigation, item}} />
+            {index != data.length - 1 && (
+              <Seperator vertical={false} spacing="p20" />
+            )}
+          </>
         ))}
       </Box>
     );
