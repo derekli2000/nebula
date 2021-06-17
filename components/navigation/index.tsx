@@ -2,13 +2,10 @@ import {createMaterialBottomTabNavigator} from '@react-navigation/material-botto
 import {DarkTheme, NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import {Icon} from 'react-native-elements';
-import {enableScreens} from 'react-native-screens';
 import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 import {AnimeInfo} from '../../screens/anime-info';
 import {Home} from '../../screens/home';
 import {WithStackParamList} from '../../types/navigation';
-
-enableScreens();
 
 const Stack = createSharedElementStackNavigator<WithStackParamList>();
 const Tab = createMaterialBottomTabNavigator();

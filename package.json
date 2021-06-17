@@ -25,7 +25,7 @@
     "react-native-paper": "^4.9.1",
     "react-native-reanimated": "^2.2.0",
     "react-native-safe-area-context": "^3.2.0",
-    "react-native-screens": "^3.3.0",
+    "react-native-screens": "^2.4.0",
     "react-native-shared-element": "^0.7.0",
     "react-native-snap-carousel": "^3.9.1",
     "react-native-svg": "^12.1.1",
