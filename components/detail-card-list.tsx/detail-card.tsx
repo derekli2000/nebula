@@ -1,6 +1,8 @@
-import React from 'react';
-import {TouchableOpacity} from 'react-native';
-import {Icon, Image, Text} from 'react-native-elements';
+import {nanoid} from 'nanoid';
+import React, {useRef} from 'react';
+import {Image, TouchableOpacity} from 'react-native';
+import {Icon, Text} from 'react-native-elements';
+import {SharedElement} from 'react-navigation-shared-element';
 import {AnimeOverview} from '../../types/anime';
 import {Seperator} from '../../ui/seperator';
 import {Box} from '../../ui/theme';
@@ -11,20 +13,27 @@ interface DetailCardProps {
 }
 
 export const DetailCard = ({navigation, item}: DetailCardProps) => {
+  const fromNodeId = useRef(nanoid()).current;
+  const onPress = () => {
+    navigation.navigate('anime-info', {...item, fromNodeId});
+  };
+
   return (
     <TouchableOpacity
       activeOpacity={0.7}
-      onPress={() => navigation.navigate('anime-info', item)}
+      onPress={onPress}
       style={{overflow: 'hidden'}}>
       <Box
         flexDirection="row"
         backgroundColor="backgroundSecondary"
         borderRadius="p8"
         padding="p8">
-        <Image
-          source={{uri: item.poster_url}}
-          style={{height: 137, width: 97, borderRadius: 8}}
-        />
+        <SharedElement id={fromNodeId}>
+          <Image
+            source={{uri: item.poster_url}}
+            style={{height: 137, width: 97, borderRadius: 8}}
+          />
+        </SharedElement>
         <Seperator vertical />
         <Box flexDirection="column" flex={1}>
           <Text

@@ -26,3 +26,18 @@ export const Home = () => {
     </Screen>
   );
 };
+
+Home.sharedElements = (_: any, route: any, showing: boolean) => {
+  if (showing) {
+    return [];
+  }
+
+  return [
+    {
+      id: route.params.fromNodeId,
+      otherId: `item.${route.params.id}.featured`,
+      animation: 'move',
+      resize: 'clip',
+    },
+  ];
+};

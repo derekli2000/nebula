@@ -64,6 +64,7 @@ const createNebulaTheme = (mode: 'light' | 'dark') => {
     borderRadii: {
       p8: 8,
       p16: 16,
+      p32: 32,
     },
   });
 };

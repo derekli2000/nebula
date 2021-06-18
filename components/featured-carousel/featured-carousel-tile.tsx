@@ -1,6 +1,7 @@
-import React from 'react';
-import {TouchableOpacity} from 'react-native';
-import {Icon, Image, Text} from 'react-native-elements';
+import {nanoid} from 'nanoid';
+import React, {useRef} from 'react';
+import {Image, TouchableOpacity} from 'react-native';
+import {Icon, Text} from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
 import {SharedElement} from 'react-navigation-shared-element';
 import {AnimeOverview} from '../../types/anime';
@@ -20,49 +21,59 @@ export const FeaturedCarouselTile = ({
   imageHeight,
 }: FeaturedCarouselTileProps) => {
   const borderRadius = imageWidth * 0.08;
+  const fromNodeId = useRef(nanoid()).current;
+
+  const onPress = () => {
+    navigation.navigate('anime-info', {...item, fromNodeId});
+  };
 
   return (
     <TouchableOpacity
       activeOpacity={0.7}
-      onPress={() => navigation.navigate('anime-info', item)}
+      onPress={onPress}
       style={{overflow: 'hidden', borderRadius, width: imageWidth}}>
-      <SharedElement id={`item.${item.id}.featured`}>
+      <SharedElement id={fromNodeId}>
         <Image
           source={{
             uri: item.poster_url,
+          }}
+          style={{
             height: imageHeight,
             width: imageWidth,
+            borderRadius,
           }}
-          style={{resizeMode: 'cover', height: imageHeight, width: imageWidth}}
+          resizeMode="cover"
         />
-      </SharedElement>
-      <LinearGradient
-        colors={['#00000000', '#000000']}
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          paddingHorizontal: borderRadius / 2,
-          paddingVertical: borderRadius / 2,
-        }}>
-        <Text
-          h4
-          numberOfLines={1}
+        <LinearGradient
+          colors={['#00000000', '#000000']}
           style={{
-            textTransform: 'uppercase',
-            fontWeight: 'bold',
-            color: 'white',
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            borderBottomLeftRadius: borderRadius,
+            borderBottomRightRadius: borderRadius,
+            paddingHorizontal: borderRadius / 2,
+            paddingVertical: borderRadius / 2,
           }}>
-          {item.english_title}
-        </Text>
-        <Box alignSelf="flex-start" paddingVertical="p4" flexDirection="row">
-          <Icon name="star" />
-          <Text style={{fontSize: 20, marginLeft: 4, color: 'white'}}>
-            {item.score.toFixed(1)}
+          <Text
+            h4
+            numberOfLines={1}
+            style={{
+              textTransform: 'uppercase',
+              fontWeight: 'bold',
+              color: 'white',
+            }}>
+            {item.english_title}
           </Text>
-        </Box>
-      </LinearGradient>
+          <Box alignSelf="flex-start" paddingVertical="p4" flexDirection="row">
+            <Icon name="star" />
+            <Text style={{fontSize: 20, marginLeft: 4, color: 'white'}}>
+              {item.score.toFixed(1)}
+            </Text>
+          </Box>
+        </LinearGradient>
+      </SharedElement>
     </TouchableOpacity>
   );
 };

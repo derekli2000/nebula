@@ -1,10 +1,11 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {FlatList, ListRenderItem} from 'react-native';
-import {Image, Text} from 'react-native-elements';
-import {AnimeOverview} from '../types/anime';
-import {Seperator} from '../ui/seperator';
-import {Box} from '../ui/theme';
+import {FlatList} from 'react-native';
+import {Text} from 'react-native-elements';
+import {AnimeOverview} from '../../types/anime';
+import {Seperator} from '../../ui/seperator';
+import {Box} from '../../ui/theme';
+import {NonFeaturedTile} from './non-featured-tile';
 
 interface NonFeaturedCarouselProps {
   title: string;
@@ -17,21 +18,6 @@ export const NonFeaturedCarousel = ({
 }: NonFeaturedCarouselProps) => {
   const navigation = useNavigation();
 
-  const _renderItem: ListRenderItem<typeof data[number]> = ({item}) => {
-    return (
-      <Box width={87}>
-        <Image
-          source={{uri: item.poster_url}}
-          style={{height: 134, borderRadius: 8}}
-          onPress={() => navigation.navigate('anime-info', item)}
-        />
-        <Text style={{marginTop: 4}} numberOfLines={2}>
-          {item.english_title}
-        </Text>
-      </Box>
-    );
-  };
-
   return (
     <Box>
       <Box paddingHorizontal="screenInset" paddingBottom="p8">
@@ -42,7 +28,7 @@ export const NonFeaturedCarousel = ({
       <FlatList
         horizontal
         data={data}
-        renderItem={_renderItem}
+        renderItem={({item}) => <NonFeaturedTile {...{navigation, item}} />}
         keyExtractor={item => item.id}
         contentContainerStyle={{
           paddingHorizontal: 32,
