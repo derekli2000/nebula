@@ -4,7 +4,7 @@ import {StatusBar} from 'react-native';
 import {ThemeProvider as ElementsProvider} from 'react-native-elements';
 import {useRecoilState} from 'recoil';
 import {isDarkModeAtom} from '../state/isDarkMode';
-import {DarkTheme, LightTheme} from '../ui/theme';
+import {DarkTheme, LightTheme} from '../ui/Theme';
 
 export const StyleProviders: FC = ({children}) => {
   const [isDarkMode] = useRecoilState(isDarkModeAtom);

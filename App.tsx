@@ -1,8 +1,8 @@
 import React from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {RecoilRoot} from 'recoil';
-import {StyleProviders} from './components/style-providers';
-import {Navigation} from './navigation';
+import {StyleProviders} from './components/StyleProviders';
+import {Navigation} from './screens/Navigation';
 
 const App = () => {
   return (

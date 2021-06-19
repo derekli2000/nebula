@@ -3,14 +3,14 @@ import React, {useRef} from 'react';
 import {Image, TouchableOpacity} from 'react-native';
 import {Text} from 'react-native-elements';
 import {SharedElement} from 'react-navigation-shared-element';
-import {AnimeOverview} from '../../types/anime';
+import {AnimeOverview} from '../../types/Anime';
 
-interface NonFeaturedTileProps {
+interface BasicTileProps {
   item: AnimeOverview;
   navigation: any;
 }
 
-export const NonFeaturedTile = ({item, navigation}: NonFeaturedTileProps) => {
+export const BasicTile = ({item, navigation}: BasicTileProps) => {
   const fromNodeId = useRef(nanoid()).current;
   const onPress = () => {
     navigation.navigate('anime-info', {...item, fromNodeId});

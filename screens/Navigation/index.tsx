@@ -3,9 +3,9 @@ import {DarkTheme, NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import {Icon} from 'react-native-elements';
 import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
-import {AnimeInfo} from '../screens/anime-info';
-import {Home} from '../screens/home';
-import {WithStackParamList} from '../types/navigation';
+import {WithStackParamList} from '../../types/Navigation';
+import {AnimeInfo} from '../AnimeInfo';
+import {Home} from '../Home';
 
 const Stack = createSharedElementStackNavigator<WithStackParamList>();
 const Tab = createMaterialBottomTabNavigator();

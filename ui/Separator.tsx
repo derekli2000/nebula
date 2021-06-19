@@ -1,17 +1,17 @@
 import React from 'react';
-import {Box, Spacing} from './theme';
+import {Box, Spacing} from './Theme';
 
-interface SeperatorProps {
+export interface SeparatorProps {
   vertical?: boolean;
   spacing?: keyof typeof Spacing;
   grow?: boolean;
 }
 
-export const Seperator = ({
+export const Separator = ({
   vertical,
   grow,
   spacing = 'p12',
-}: SeperatorProps) => {
+}: SeparatorProps) => {
   let height = 0;
   let width = 0;
 

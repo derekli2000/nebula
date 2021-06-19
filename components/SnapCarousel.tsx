@@ -1,23 +1,22 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {FlatList, useWindowDimensions} from 'react-native';
-import {Text} from 'react-native-elements';
-import {AnimeOverview} from '../../types/anime';
-import {Seperator} from '../../ui/seperator';
-import {Box} from '../../ui/theme';
-import {FeaturedCarouselTile} from './featured-carousel-tile';
+import {AnimeOverview} from '../types/Anime';
+import {Section} from '../ui/Layout/Section';
+import {Separator} from '../ui/Separator';
+import {FeaturedTile} from './Tiles/FeaturedTile';
 
-interface FeaturedCarouselProps {
+interface SnapCarouselProps {
   aspectRatio?: number;
   title: string;
   data: AnimeOverview[];
 }
 
-export const FeaturedCarousel = ({
+export const SnapCarousel = ({
   aspectRatio = 1.4,
   title,
   data,
-}: FeaturedCarouselProps) => {
+}: SnapCarouselProps) => {
   const navigation = useNavigation();
 
   const {width} = useWindowDimensions();
@@ -25,19 +24,12 @@ export const FeaturedCarousel = ({
   const imageHeight = imageWidth * aspectRatio;
 
   return (
-    <Box borderRadius="p16">
-      <Box paddingHorizontal="screenInset" paddingBottom="p8">
-        <Text h4 style={{fontWeight: 'bold'}}>
-          {title}
-        </Text>
-      </Box>
+    <Section title={title}>
       <FlatList
         horizontal
         data={data}
         renderItem={({item}) => (
-          <FeaturedCarouselTile
-            {...{item, navigation, imageWidth, imageHeight}}
-          />
+          <FeaturedTile {...{item, navigation, imageWidth, imageHeight}} />
         )}
         keyExtractor={item => item.id}
         contentContainerStyle={{
@@ -45,9 +37,9 @@ export const FeaturedCarousel = ({
         }}
         snapToInterval={imageWidth + 20}
         decelerationRate="fast"
-        ItemSeparatorComponent={() => <Seperator vertical spacing="p20" />}
+        ItemSeparatorComponent={() => <Separator vertical spacing="p20" />}
         showsHorizontalScrollIndicator={false}
       />
-    </Box>
+    </Section>
   );
 };

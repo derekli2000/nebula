@@ -1,4 +1,4 @@
-import {AnimeOverview} from '../types/anime';
+import {AnimeOverview} from '../types/Anime';
 
 export const OverviewData: AnimeOverview[] = [
   {

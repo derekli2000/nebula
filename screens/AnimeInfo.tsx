@@ -2,9 +2,9 @@ import React from 'react';
 import {Image, View} from 'react-native';
 import {Button, Icon, Text} from 'react-native-elements';
 import {SharedElement} from 'react-navigation-shared-element';
-import {Screen} from '../ui/layout/screen';
-import {Seperator} from '../ui/seperator';
-import {Box} from '../ui/theme';
+import {Screen} from '../ui/Layout/Screen';
+import {Separator} from '../ui/Separator';
+import {Box} from '../ui/Theme';
 
 export const AnimeInfo = ({navigation, route}: any) => {
   const item = route.params;
@@ -24,7 +24,7 @@ export const AnimeInfo = ({navigation, route}: any) => {
           resizeMode="cover"
         />
       </SharedElement>
-      <Seperator />
+      <Separator />
       <Box paddingHorizontal="p12">
         <SharedElement id={`item.${item.id}.title`}>
           <View>
@@ -49,9 +49,9 @@ export const AnimeInfo = ({navigation, route}: any) => {
           </View>
         </SharedElement>
       </Box>
-      <Seperator grow />
+      <Separator grow />
       <Button title="hello" onPress={() => navigation.goBack()} />
-      <Seperator />
+      <Separator />
     </Screen>
   );
 };

@@ -4,22 +4,22 @@ import {Image, TouchableOpacity} from 'react-native';
 import {Icon, Text} from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
 import {SharedElement} from 'react-navigation-shared-element';
-import {AnimeOverview} from '../../types/anime';
-import {Box} from '../../ui/theme';
+import {AnimeOverview} from '../../types/Anime';
+import {Box} from '../../ui/Theme';
 
-interface FeaturedCarouselTileProps {
+interface FeaturedTileProps {
   navigation: any;
   item: AnimeOverview;
   imageHeight: number;
   imageWidth: number;
 }
 
-export const FeaturedCarouselTile = ({
+export const FeaturedTile = ({
   item,
   navigation,
   imageWidth,
   imageHeight,
-}: FeaturedCarouselTileProps) => {
+}: FeaturedTileProps) => {
   const borderRadius = imageWidth * 0.08;
   const fromNodeId = useRef(nanoid()).current;
 

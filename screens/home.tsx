@@ -1,27 +1,35 @@
 import React from 'react';
 import {ScrollView} from 'react-native';
-import {DetailedCardList} from '../components/detail-card-list.tsx';
-import {FeaturedCarousel} from '../components/featured-carousel';
-import {NonFeaturedCarousel} from '../components/non-featured-carousel';
+import {Carousel} from '../components/Carousel';
+import {SnapCarousel} from '../components/SnapCarousel';
+import {DetailTile} from '../components/Tiles/DetailTile';
 import {OverviewData} from '../data/overviews';
-import {Screen} from '../ui/layout/screen';
-import {Seperator} from '../ui/seperator';
+import {Join} from '../ui/Layout/Join';
+import {Screen} from '../ui/Layout/Screen';
+import {Section} from '../ui/Layout/Section';
+import {Separator} from '../ui/Separator';
 
-export const Home = () => {
+export const Home = ({navigation}: any) => {
   return (
     <Screen disablePadding>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Seperator spacing="screenInset" />
-        <FeaturedCarousel data={OverviewData} title="Top Airing" />
-        <Seperator spacing="p16" />
-        <NonFeaturedCarousel title="Spring 2021" data={OverviewData} />
-        <Seperator />
-        <NonFeaturedCarousel title="Recommended" data={OverviewData} />
-        <Seperator />
-        <NonFeaturedCarousel title="Manga" data={OverviewData} />
-        <Seperator />
-        <DetailedCardList title="Manga" data={OverviewData} noScrollView />
-        <Seperator />
+        <Separator spacing="screenInset" />
+        <SnapCarousel data={OverviewData} title="Top Airing" />
+        <Separator spacing="p16" />
+        <Carousel title="Spring 2021" data={OverviewData} />
+        <Separator />
+        <Carousel title="Recommended" data={OverviewData} />
+        <Separator />
+        <Carousel title="Manga" data={OverviewData} />
+        <Separator />
+        <Section title="Manga">
+          <Join data={OverviewData}>
+            {item => (
+              <DetailTile key={item.id} navigation={navigation} item={item} />
+            )}
+          </Join>
+        </Section>
+        <Separator />
       </ScrollView>
     </Screen>
   );

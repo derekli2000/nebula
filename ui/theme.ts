@@ -13,7 +13,7 @@ import {
   red400,
   white,
   yellow400,
-} from './colors';
+} from './Colors';
 
 const palette = {
   red: red400,

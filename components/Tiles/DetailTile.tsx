@@ -3,16 +3,16 @@ import React, {useRef} from 'react';
 import {Image, TouchableOpacity} from 'react-native';
 import {Icon, Text} from 'react-native-elements';
 import {SharedElement} from 'react-navigation-shared-element';
-import {AnimeOverview} from '../../types/anime';
-import {Seperator} from '../../ui/seperator';
-import {Box} from '../../ui/theme';
+import {AnimeOverview} from '../../types/Anime';
+import {Separator} from '../../ui/Separator';
+import {Box} from '../../ui/Theme';
 
-interface DetailCardProps {
+interface DetailTileProps {
   navigation: any;
   item: AnimeOverview;
 }
 
-export const DetailCard = ({navigation, item}: DetailCardProps) => {
+export const DetailTile = ({navigation, item}: DetailTileProps) => {
   const fromNodeId = useRef(nanoid()).current;
   const onPress = () => {
     navigation.navigate('anime-info', {...item, fromNodeId});
@@ -34,7 +34,7 @@ export const DetailCard = ({navigation, item}: DetailCardProps) => {
             style={{height: 137, width: 97, borderRadius: 8}}
           />
         </SharedElement>
-        <Seperator vertical />
+        <Separator vertical />
         <Box flexDirection="column" flex={1}>
           <Text
             style={{marginTop: 4, fontWeight: 'bold', fontSize: 18}}

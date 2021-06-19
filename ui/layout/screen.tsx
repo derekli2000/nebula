@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {Box, useNebulaTheme} from '../theme';
+import {Box, useNebulaTheme} from '../Theme';
 
 interface ScreenProps {
   disableSafeArea?: boolean;

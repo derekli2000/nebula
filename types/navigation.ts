@@ -1,4 +1,4 @@
-import {AnimeOverview} from './anime';
+import {AnimeOverview} from './Anime';
 
 export type WithStackParamList<X = undefined> = {
   index: X;
