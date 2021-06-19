@@ -4,6 +4,7 @@ import {FlatList, useWindowDimensions} from 'react-native';
 import {AnimeOverview} from '../types/Anime';
 import {Section} from '../ui/Layout/Section';
 import {Separator} from '../ui/Separator';
+import {Spacing} from '../ui/Theme';
 import {FeaturedTile} from './Tiles/FeaturedTile';
 
 interface SnapCarouselProps {
@@ -20,7 +21,7 @@ export const SnapCarousel = ({
   const navigation = useNavigation();
 
   const {width} = useWindowDimensions();
-  const imageWidth = width - 64;
+  const imageWidth = width - 2 * Spacing.indent;
   const imageHeight = imageWidth * aspectRatio;
 
   return (
@@ -33,11 +34,11 @@ export const SnapCarousel = ({
         )}
         keyExtractor={item => item.id}
         contentContainerStyle={{
-          paddingHorizontal: 32,
+          paddingHorizontal: Spacing.indent,
         }}
-        snapToInterval={imageWidth + 20}
+        snapToInterval={imageWidth + Spacing.hSep}
         decelerationRate="fast"
-        ItemSeparatorComponent={() => <Separator vertical spacing="p20" />}
+        ItemSeparatorComponent={() => <Separator vertical spacing="hSep" />}
         showsHorizontalScrollIndicator={false}
       />
     </Section>

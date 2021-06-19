@@ -15,7 +15,7 @@ export const Screen: FC<ScreenProps> = ({
   const theme = useNebulaTheme();
   const insets = useSafeAreaInsets();
 
-  const padding = disablePadding ? 0 : theme.spacing.screenInset;
+  const padding = disablePadding ? 0 : theme.spacing.inset;
   return (
     <Box
       backgroundColor="background"

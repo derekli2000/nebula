@@ -1,21 +1,23 @@
+import {BoxProps} from '@shopify/restyle';
 import React, {FC} from 'react';
+import {View} from 'react-native';
 import {Text} from 'react-native-elements';
-import {Box} from '../Theme';
+import {Box, NebulaTheme} from '../Theme';
 
-interface SectionProps {
+interface SectionProps extends BoxProps<NebulaTheme> {
   title: string;
   noPadding?: boolean;
 }
 
-export const Section: FC<SectionProps> = ({title, children}) => {
+export const Section: FC<SectionProps> = ({title, children, ...props}) => {
   return (
-    <Box>
-      <Box paddingHorizontal="screenInset" paddingBottom="p8">
+    <View>
+      <Box paddingHorizontal="inset" paddingBottom="p8">
         <Text h4 style={{fontWeight: 'bold'}}>
           {title}
         </Text>
       </Box>
-      {children}
-    </Box>
+      <Box {...props}>{children}</Box>
+    </View>
   );
 };

@@ -7,25 +7,21 @@ export interface SeparatorProps {
   grow?: boolean;
 }
 
-export const Separator = ({
-  vertical,
-  grow,
-  spacing = 'p12',
-}: SeparatorProps) => {
+export const Separator = ({vertical, grow, spacing}: SeparatorProps) => {
   let height = 0;
   let width = 0;
 
   if (vertical) {
-    width = Spacing[spacing];
+    width = Spacing[spacing || 'vSep'];
   } else {
-    height = Spacing[spacing];
+    height = Spacing[spacing || 'hSep'];
   }
 
   return (
     <Box
       height={height}
       width={width}
-      flexBasis={Spacing[spacing]}
+      flexBasis={height || width}
       flexGrow={grow ? 1 : 0}
       flexShrink={grow ? 1 : 0}
       alignSelf="stretch"

@@ -13,7 +13,7 @@ export const Home = ({navigation}: any) => {
   return (
     <Screen disablePadding>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Separator spacing="screenInset" />
+        <Separator spacing="inset" />
         <SnapCarousel data={OverviewData} title="Top Airing" />
         <Separator spacing="p16" />
         <Carousel title="Spring 2021" data={OverviewData} />
@@ -22,7 +22,7 @@ export const Home = ({navigation}: any) => {
         <Separator />
         <Carousel title="Manga" data={OverviewData} />
         <Separator />
-        <Section title="Manga">
+        <Section title="Manga" paddingLeft="indent" paddingRight="inset">
           <Join data={OverviewData}>
             {item => (
               <DetailTile key={item.id} navigation={navigation} item={item} />

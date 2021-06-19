@@ -4,6 +4,7 @@ import {FlatList} from 'react-native';
 import {AnimeOverview} from '../types/Anime';
 import {Section} from '../ui/Layout/Section';
 import {Separator} from '../ui/Separator';
+import {Spacing} from '../ui/Theme';
 import {BasicTile} from './Tiles/BasicTile';
 
 interface CarouselProps {
@@ -22,9 +23,10 @@ export const Carousel = ({title, data}: CarouselProps) => {
         renderItem={({item}) => <BasicTile {...{navigation, item}} />}
         keyExtractor={item => item.id}
         contentContainerStyle={{
-          paddingHorizontal: 32,
+          paddingHorizontal: Spacing.indent,
         }}
-        ItemSeparatorComponent={() => <Separator vertical spacing="p20" />}
+        ItemSeparatorComponent={() => <Separator vertical spacing="hSep" />}
+        decelerationRate="fast"
         showsHorizontalScrollIndicator={false}
       />
     </Section>
