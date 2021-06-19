@@ -4,12 +4,12 @@ import {Image, TouchableOpacity} from 'react-native';
 import {Icon, Text} from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
 import {SharedElement} from 'react-navigation-shared-element';
-import {AnimeOverview} from '../../types/Anime';
+import {Anime} from '../../types/Anime';
 import {Box} from '../../ui/Theme';
 
 interface FeaturedTileProps {
   navigation: any;
-  item: AnimeOverview;
+  item: Anime;
   imageHeight: number;
   imageWidth: number;
 }
@@ -35,7 +35,7 @@ export const FeaturedTile = ({
       <SharedElement id={fromNodeId}>
         <Image
           source={{
-            uri: item.poster_url,
+            uri: item.image_url,
           }}
           style={{
             height: imageHeight,
@@ -64,12 +64,12 @@ export const FeaturedTile = ({
               fontWeight: 'bold',
               color: 'white',
             }}>
-            {item.english_title}
+            {item.title}
           </Text>
           <Box alignSelf="flex-start" paddingVertical="p4" flexDirection="row">
             <Icon name="star" />
             <Text style={{fontSize: 20, marginLeft: 4, color: 'white'}}>
-              {item.score.toFixed(1)}
+              {item.score?.toFixed(1) ?? 'N/A'}
             </Text>
           </Box>
         </LinearGradient>

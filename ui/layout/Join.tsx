@@ -16,8 +16,11 @@ export const Join = <T extends any>({
   for (let i = 0; i < data.length - 1; i++) {
     const elem = children(data[i]);
 
-    // @ts-ignore
-    list.push(elem, <Separator key={elem.key + '-s'} {...separatorProps} />);
+    list.push(
+      elem,
+      // @ts-ignore
+      <Separator key={`${elem.key}-s${i}`} {...separatorProps} />,
+    );
   }
 
   if (data.length > 0) {

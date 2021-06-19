@@ -2,18 +2,20 @@ import React from 'react';
 import {Image, View} from 'react-native';
 import {Button, Icon, Text} from 'react-native-elements';
 import {SharedElement} from 'react-navigation-shared-element';
+import {Anime} from '../types/Anime';
 import {Screen} from '../ui/Layout/Screen';
 import {Separator} from '../ui/Separator';
 import {Box} from '../ui/Theme';
 
 export const AnimeInfo = ({navigation, route}: any) => {
-  const item = route.params;
+  const item: Anime = route.params;
+
   return (
     <Screen disableSafeArea disablePadding>
-      <SharedElement id={`item.${item.id}.featured`}>
+      <SharedElement id={`item.${item.mal_id}.featured`}>
         <Image
           source={{
-            uri: item.poster_url,
+            uri: item.image_url,
           }}
           style={{
             width: '100%',
@@ -26,7 +28,7 @@ export const AnimeInfo = ({navigation, route}: any) => {
       </SharedElement>
       <Separator />
       <Box paddingHorizontal="p12">
-        <SharedElement id={`item.${item.id}.title`}>
+        <SharedElement id={`item.${item.mal_id}.title`}>
           <View>
             <Text
               h4
@@ -35,7 +37,7 @@ export const AnimeInfo = ({navigation, route}: any) => {
                 textTransform: 'uppercase',
                 fontWeight: 'bold',
               }}>
-              {item.english_title}
+              {item.title}
             </Text>
             <Box
               alignSelf="flex-start"
@@ -43,7 +45,7 @@ export const AnimeInfo = ({navigation, route}: any) => {
               flexDirection="row">
               <Icon name="star" />
               <Text style={{fontSize: 20, marginLeft: 4}}>
-                {item.score.toFixed(1)}
+                {item.score?.toFixed(1) ?? 'N/A'}
               </Text>
             </Box>
           </View>

@@ -1,7 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {FlatList, useWindowDimensions} from 'react-native';
-import {AnimeOverview} from '../types/Anime';
+import {Anime} from '../types/Anime';
 import {Section} from '../ui/Layout/Section';
 import {Separator} from '../ui/Separator';
 import {Spacing} from '../ui/Theme';
@@ -10,7 +10,7 @@ import {FeaturedTile} from './Tiles/FeaturedTile';
 interface SnapCarouselProps {
   aspectRatio?: number;
   title: string;
-  data: AnimeOverview[];
+  data: Anime[];
 }
 
 export const SnapCarousel = ({
@@ -32,7 +32,7 @@ export const SnapCarousel = ({
         renderItem={({item}) => (
           <FeaturedTile {...{item, navigation, imageWidth, imageHeight}} />
         )}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.mal_id.toString()}
         contentContainerStyle={{
           paddingHorizontal: Spacing.indent,
         }}

@@ -3,29 +3,36 @@ import {ScrollView} from 'react-native';
 import {Carousel} from '../components/Carousel';
 import {SnapCarousel} from '../components/SnapCarousel';
 import {DetailTile} from '../components/Tiles/DetailTile';
-import {OverviewData} from '../data/overviews';
+import {API} from '../core/api';
 import {Join} from '../ui/Layout/Join';
 import {Screen} from '../ui/Layout/Screen';
 import {Section} from '../ui/Layout/Section';
 import {Separator} from '../ui/Separator';
 
 export const Home = ({navigation}: any) => {
+  const [{data: schedule}] = API.useSchedule('monday');
+  const [{data: topAiring}] = API.useTop('anime', 1, 'airing');
+
   return (
     <Screen disablePadding>
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView showsVerticalScrollIndicator={false} decelerationRate="fast">
         <Separator spacing="inset" />
-        <SnapCarousel data={OverviewData} title="Top Airing" />
+        <SnapCarousel data={topAiring?.top || []} title="Top Airing" />
         <Separator spacing="p16" />
-        <Carousel title="Spring 2021" data={OverviewData} />
+        <Carousel title="Spring 2021" data={schedule?.monday || []} />
         <Separator />
-        <Carousel title="Recommended" data={OverviewData} />
+        <Carousel title="Recommended" data={schedule?.monday || []} />
         <Separator />
-        <Carousel title="Manga" data={OverviewData} />
+        <Carousel title="Manga" data={schedule?.monday || []} />
         <Separator />
         <Section title="Manga" paddingLeft="indent" paddingRight="inset">
-          <Join data={OverviewData}>
+          <Join data={schedule?.monday || []}>
             {item => (
-              <DetailTile key={item.id} navigation={navigation} item={item} />
+              <DetailTile
+                key={item.mal_id}
+                navigation={navigation}
+                item={item}
+              />
             )}
           </Join>
         </Section>
@@ -43,7 +50,7 @@ Home.sharedElements = (_: any, route: any, showing: boolean) => {
   return [
     {
       id: route.params.fromNodeId,
-      otherId: `item.${route.params.id}.featured`,
+      otherId: `item.${route.params.mal_id}.featured`,
       animation: 'move',
       resize: 'clip',
     },
