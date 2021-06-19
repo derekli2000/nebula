@@ -44,36 +44,36 @@ export const FeaturedTile = ({
           }}
           resizeMode="cover"
         />
-        <LinearGradient
-          colors={['#00000000', '#000000']}
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            right: 0,
-            borderBottomLeftRadius: borderRadius,
-            borderBottomRightRadius: borderRadius,
-            paddingHorizontal: borderRadius / 2,
-            paddingVertical: borderRadius / 2,
-          }}>
-          <Text
-            h4
-            numberOfLines={1}
-            style={{
-              textTransform: 'uppercase',
-              fontWeight: 'bold',
-              color: 'white',
-            }}>
-            {item.title}
-          </Text>
-          <Box alignSelf="flex-start" paddingVertical="p4" flexDirection="row">
-            <Icon name="star" />
-            <Text style={{fontSize: 20, marginLeft: 4, color: 'white'}}>
-              {item.score?.toFixed(1) ?? 'N/A'}
-            </Text>
-          </Box>
-        </LinearGradient>
       </SharedElement>
+      <LinearGradient
+        colors={['#00000000', '#000000']}
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          borderBottomLeftRadius: borderRadius,
+          borderBottomRightRadius: borderRadius,
+          paddingHorizontal: borderRadius / 2,
+          paddingVertical: borderRadius / 2,
+        }}>
+        <Text
+          h4
+          numberOfLines={1}
+          style={{
+            textTransform: 'uppercase',
+            fontWeight: 'bold',
+            color: 'white',
+          }}>
+          {item.title}
+        </Text>
+        <Box alignSelf="flex-start" paddingVertical="p4" flexDirection="row">
+          <Icon name="star" />
+          <Text style={{fontSize: 20, marginLeft: 4, color: 'white'}}>
+            {item.score?.toFixed(1) ?? 'N/A'}
+          </Text>
+        </Box>
+      </LinearGradient>
     </TouchableOpacity>
   );
 };
