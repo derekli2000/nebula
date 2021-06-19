@@ -18,7 +18,7 @@ const withStack = (component: React.ComponentType) => {
         name="anime-info"
         component={AnimeInfo}
         options={({route}) => ({
-          title: route.params.english_title,
+          title: route.params.title,
         })}
       />
     </Stack.Navigator>
