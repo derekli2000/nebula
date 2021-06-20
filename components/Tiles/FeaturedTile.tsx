@@ -46,16 +46,18 @@ export const FeaturedTile = ({
         />
       </SharedElement>
       <LinearGradient
-        colors={['#00000000', '#000000']}
+        colors={['#00000000', '#000000', '#000000']}
         style={{
           position: 'absolute',
           bottom: 0,
           left: 0,
           right: 0,
-          borderBottomLeftRadius: borderRadius,
-          borderBottomRightRadius: borderRadius,
+          // borderBottomLeftRadius: borderRadius,
+          // borderBottomRightRadius: borderRadius,
           paddingHorizontal: borderRadius / 2,
-          paddingVertical: borderRadius / 2,
+          paddingVertical: borderRadius,
+          // flex: 1,
+          // backgroundColor: 'red',
         }}>
         <Text
           h4
