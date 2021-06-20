@@ -46,26 +46,6 @@ export const Navigation = () => {
           }}
         />
         <Tab.Screen
-          name="trending"
-          component={withStack(Home)}
-          options={{
-            tabBarLabel: 'Trending',
-            tabBarIcon: ({color}) => (
-              <Icon name="local-fire-department" color={color} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="saved"
-          component={withStack(Home)}
-          options={{
-            tabBarLabel: 'Saved',
-            tabBarIcon: ({color}) => (
-              <Icon name="bookmark-border" color={color} />
-            ),
-          }}
-        />
-        <Tab.Screen
           name="account"
           component={withStack(Home)}
           options={{
