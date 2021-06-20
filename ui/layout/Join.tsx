@@ -2,7 +2,7 @@ import React from 'react';
 import {Separator, SeparatorProps} from '../Separator';
 
 interface JoinProps<T> {
-  data: T[];
+  data: T[] | undefined;
   separatorProps?: SeparatorProps;
   children: (item: T) => Element;
 }
@@ -13,18 +13,21 @@ export const Join = <T extends any>({
   children,
 }: JoinProps<T>) => {
   const list: Element[] = [];
-  for (let i = 0; i < data.length - 1; i++) {
-    const elem = children(data[i]);
 
-    list.push(
-      elem,
-      // @ts-ignore
-      <Separator key={`${elem.key}-s${i}`} {...separatorProps} />,
-    );
-  }
+  if (data) {
+    for (let i = 0; i < data.length - 1; i++) {
+      const elem = children(data[i]);
 
-  if (data.length > 0) {
-    list.push(children(data[data.length - 1]));
+      list.push(
+        elem,
+        // @ts-ignore
+        <Separator key={`${elem.key}-s${i}`} {...separatorProps} />,
+      );
+    }
+
+    if (data.length > 0) {
+      list.push(children(data[data.length - 1]));
+    }
   }
 
   return <>{list}</>;

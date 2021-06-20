@@ -260,6 +260,9 @@ PODS:
     - React-Core
   - react-native-safe-area-context (3.2.0):
     - React-Core
+  - react-native-shimmer (0.6.0):
+    - React (>= 0.45.1)
+    - Shimmer (~> 1)
   - React-perflogger (0.64.1)
   - React-RCTActionSheet (0.64.1):
     - React-Core/RCTActionSheetHeaders (= 0.64.1)
@@ -365,6 +368,7 @@ PODS:
     - React
   - RNVectorIcons (8.1.0):
     - React-Core
+  - Shimmer (1.0.2)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -410,6 +414,7 @@ DEPENDENCIES:
   - "react-native-blur (from `../node_modules/@react-native-community/blur`)"
   - react-native-get-random-values (from `../node_modules/react-native-get-random-values`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
+  - react-native-shimmer (from `../node_modules/react-native-shimmer`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -444,6 +449,7 @@ SPEC REPOS:
     - FlipperKit
     - libevent
     - OpenSSL-Universal
+    - Shimmer
     - YogaKit
 
 EXTERNAL SOURCES:
@@ -485,6 +491,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-get-random-values"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
+  react-native-shimmer:
+    :path: "../node_modules/react-native-shimmer"
   React-perflogger:
     :path: "../node_modules/react-native/ReactCommon/reactperflogger"
   React-RCTActionSheet:
@@ -557,6 +565,7 @@ SPEC CHECKSUMS:
   react-native-blur: cad4d93b364f91e7b7931b3fa935455487e5c33c
   react-native-get-random-values: 237bffb1c7e05fb142092681531810a29ba53015
   react-native-safe-area-context: f0906bf8bc9835ac9a9d3f97e8bde2a997d8da79
+  react-native-shimmer: 2fdba9953215a29106febc9d147caa31a0080a8a
   React-perflogger: aad6d4b4a267936b3667260d1f649b6f6069a675
   React-RCTActionSheet: fc376be462c9c8d6ad82c0905442fd77f82a9d2a
   React-RCTAnimation: ba0a1c3a2738be224a08092fa7f1b444ab77d309
@@ -576,6 +585,7 @@ SPEC CHECKSUMS:
   RNSharedElement: 00b1a1420d213a34459bb9a5aacabb38107d7948
   RNSVG: 551acb6562324b1d52a4e0758f7ca0ec234e278f
   RNVectorIcons: 31cebfcf94e8cf8686eb5303ae0357da64d7a5a4
+  Shimmer: c5374be1c2b0c9e292fb05b339a513cf291cac86
   Yoga: a7de31c64fe738607e7a3803e3f591a4b1df7393
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 

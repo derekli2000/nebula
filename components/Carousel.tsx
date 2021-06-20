@@ -9,7 +9,7 @@ import {BasicTile} from './Tiles/BasicTile';
 
 interface CarouselProps {
   title: string;
-  data: Anime[];
+  data: Anime[] | undefined;
 }
 
 export const Carousel = ({title, data}: CarouselProps) => {

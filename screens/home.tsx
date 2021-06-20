@@ -2,31 +2,31 @@ import React from 'react';
 import {ScrollView} from 'react-native';
 import {Carousel} from '../components/Carousel';
 import {SnapCarousel} from '../components/SnapCarousel';
-import {DetailTile} from '../components/Tiles/DetailTile';
 import {API} from '../core/api';
-import {Join} from '../ui/Layout/Join';
+import {getSemanticDay} from '../core/dates';
 import {Screen} from '../ui/Layout/Screen';
-import {Section} from '../ui/Layout/Section';
 import {Separator} from '../ui/Separator';
 
-export const Home = ({navigation}: any) => {
-  const [{data: schedule}] = API.useSchedule('monday');
+export const Home = () => {
   const [{data: topAiring}] = API.useTop('anime', 1, 'airing');
+  const [{data: topUpcoming}] = API.useTop('anime', 1, 'upcoming');
+  const [{data: seasonalAnime}] = API.useCurrentSeason();
+  const [{data: latestEpisodes}] = API.useSchedule(getSemanticDay());
 
   return (
     <Screen disablePadding>
       <ScrollView showsVerticalScrollIndicator={false} decelerationRate="fast">
         <Separator spacing="inset" />
-        <SnapCarousel data={topAiring?.top || []} title="Top Airing" />
+        <SnapCarousel data={topAiring} title="Top Airing" />
         <Separator spacing="p16" />
-        <Carousel title="Spring 2021" data={schedule?.monday || []} />
+        <Carousel title="Current Season" data={seasonalAnime} />
         <Separator />
-        <Carousel title="Recommended" data={schedule?.monday || []} />
+        <Carousel title="Today's Updates" data={latestEpisodes} />
         <Separator />
-        <Carousel title="Manga" data={schedule?.monday || []} />
+        <Carousel title="Top Upcoming" data={topUpcoming} />
         <Separator />
-        <Section title="Manga" paddingLeft="indent" paddingRight="inset">
-          <Join data={schedule?.monday || []}>
+        {/* <Section title="Top Upcoming" paddingLeft="indent" paddingRight="inset">
+          <Join data={topUpcoming}>
             {item => (
               <DetailTile
                 key={item.mal_id}
@@ -36,7 +36,7 @@ export const Home = ({navigation}: any) => {
             )}
           </Join>
         </Section>
-        <Separator />
+        <Separator /> */}
       </ScrollView>
     </Screen>
   );

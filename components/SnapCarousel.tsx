@@ -10,7 +10,7 @@ import {FeaturedTile} from './Tiles/FeaturedTile';
 interface SnapCarouselProps {
   aspectRatio?: number;
   title: string;
-  data: Anime[];
+  data: Anime[] | undefined;
 }
 
 export const SnapCarousel = ({
