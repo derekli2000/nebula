@@ -2,23 +2,26 @@ import {nanoid} from 'nanoid';
 import React, {useRef} from 'react';
 import {Image, TouchableOpacity} from 'react-native';
 import {Icon, Text} from 'react-native-elements';
-import LinearGradient from 'react-native-linear-gradient';
+import Shimmer from 'react-native-shimmer';
 import {SharedElement} from 'react-navigation-shared-element';
+import {useDelayedState} from '../../core/hooks/useDelay';
 import {Anime} from '../../types/Anime';
 import {Box} from '../../ui/Theme';
 
 interface FeaturedTileProps {
   navigation: any;
-  item: Anime;
-  imageHeight: number;
-  imageWidth: number;
+  item?: Anime;
+  imageHeight?: number;
+  imageWidth?: number;
+  size?: 's' | 'l';
 }
 
-export const FeaturedTile = ({
+export const AnimeTile = ({
   item,
   navigation,
-  imageWidth,
-  imageHeight,
+  imageWidth = 87,
+  imageHeight = 134,
+  size = 's',
 }: FeaturedTileProps) => {
   const borderRadius = imageWidth * 0.08;
   const fromNodeId = useRef(nanoid()).current;
@@ -26,6 +29,10 @@ export const FeaturedTile = ({
   const onPress = () => {
     navigation.navigate('anime-info', {...item, fromNodeId});
   };
+
+  if (!item) {
+    return <AnimeTile.Skeleton {...{imageHeight, imageWidth, borderRadius}} />;
+  }
 
   return (
     <TouchableOpacity
@@ -45,37 +52,50 @@ export const FeaturedTile = ({
           resizeMode="cover"
         />
       </SharedElement>
-      <LinearGradient
-        colors={['#00000000', '#000000', '#000000']}
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          // borderBottomLeftRadius: borderRadius,
-          // borderBottomRightRadius: borderRadius,
-          paddingHorizontal: borderRadius / 2,
-          paddingVertical: borderRadius,
-          // flex: 1,
-          // backgroundColor: 'red',
-        }}>
+      <Box paddingTop="p4">
         <Text
-          h4
-          numberOfLines={1}
-          style={{
-            textTransform: 'uppercase',
-            fontWeight: 'bold',
-            color: 'white',
-          }}>
+          h4={size === 's'}
+          h3={size === 'l'}
+          h4Style={{fontSize: 14, color: 'white'}}
+          h3Style={{fontSize: 18, color: 'white'}}
+          numberOfLines={size === 's' ? 2 : 1}>
           {item.title}
         </Text>
-        <Box alignSelf="flex-start" paddingVertical="p4" flexDirection="row">
-          <Icon name="star" />
-          <Text style={{fontSize: 20, marginLeft: 4, color: 'white'}}>
-            {item.score?.toFixed(1) ?? 'N/A'}
-          </Text>
-        </Box>
-      </LinearGradient>
+        {size === 'l' && (
+          <Box alignSelf="flex-start" paddingVertical="p4" flexDirection="row">
+            <Icon name="star" />
+            <Text style={{fontSize: 20, marginLeft: 4, color: 'white'}}>
+              {item.score?.toFixed(1) ?? 'N/A'}
+            </Text>
+          </Box>
+        )}
+      </Box>
     </TouchableOpacity>
+  );
+};
+
+interface FeaturedTileSkeletonProps {
+  imageHeight: number;
+  imageWidth: number;
+  borderRadius: number;
+}
+
+AnimeTile.Skeleton = ({
+  imageHeight,
+  imageWidth,
+  borderRadius,
+}: FeaturedTileSkeletonProps) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const animating = useDelayedState(false, true, 200);
+
+  return (
+    <Shimmer animating={animating} opacity={0.7} animationOpacity={1}>
+      <Box
+        style={{borderRadius}}
+        width={imageWidth}
+        height={imageHeight}
+        backgroundColor="backgroundSecondary"
+      />
+    </Shimmer>
   );
 };

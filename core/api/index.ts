@@ -41,7 +41,7 @@ export const API = {
   useSchedule: (day: ScheduleDay) =>
     useAxios<Anime[]>({
       url: `schedule/${day}`,
-      transformResponse: useCallback(res => JSON.parse(res)[day], []),
+      transformResponse: useCallback(res => JSON.parse(res)[day], [day]),
     }),
   useTop: (type: TopType, page: number, subType: TopSubType) =>
     useAxios<Anime[]>({

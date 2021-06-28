@@ -42,11 +42,7 @@ export const Home = () => {
   );
 };
 
-Home.sharedElements = (_: any, route: any, showing: boolean) => {
-  if (showing) {
-    return [];
-  }
-
+Home.sharedElements = (_: any, route: any) => {
   return [
     {
       id: route.params.fromNodeId,

@@ -5,7 +5,7 @@ import {Anime} from '../types/Anime';
 import {Section} from '../ui/Layout/Section';
 import {Separator} from '../ui/Separator';
 import {Spacing} from '../ui/Theme';
-import {FeaturedTile} from './Tiles/FeaturedTile';
+import {AnimeTile} from './Tiles/FeaturedTile';
 
 interface SnapCarouselProps {
   aspectRatio?: number;
@@ -28,11 +28,17 @@ export const SnapCarousel = ({
     <Section title={title}>
       <FlatList
         horizontal
-        data={data}
+        scrollEnabled={!!data}
+        data={data || placeholder_list}
         renderItem={({item}) => (
-          <FeaturedTile {...{item, navigation, imageWidth, imageHeight}} />
+          <AnimeTile
+            size="l"
+            {...{item, navigation, imageWidth, imageHeight}}
+          />
         )}
-        keyExtractor={item => item.mal_id.toString()}
+        keyExtractor={(item, index) =>
+          item?.mal_id.toString() || index.toString()
+        }
         contentContainerStyle={{
           paddingHorizontal: Spacing.indent,
         }}
@@ -44,3 +50,5 @@ export const SnapCarousel = ({
     </Section>
   );
 };
+
+const placeholder_list = [undefined, undefined, undefined];
